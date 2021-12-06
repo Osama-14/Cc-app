@@ -48,7 +48,8 @@ const Model = () => {
       {state.register ?      <div className="model__form">
         <form onSubmit={registerUser}>
           <div className="model__group">
-            <img src="/Images/insta.png" />
+            <h1 style={{textAlign:"center"}}>ChitChat</h1>
+         
           </div>
           <div className="model__group">
             <input type="text" name="username" className="model__input" placeholder="UserName" onChange={handleInput} value ={inputs.username} required/>
@@ -72,7 +73,7 @@ const Model = () => {
       </div> :  <div className="model__form">
         <form onSubmit={loginUser}>
           <div className="model__group">
-            <img src="/Images/insta.png" />
+            <h1  style={{textAlign:"center"}}>ChitChat</h1>
           </div>
           <div className="model__group">
             <input type="email" name="email" className="model__input" placeholder="Email" onChange={handleInput} value={inputs.email} required />

@@ -1,44 +1,63 @@
 import React from "react";
-import {FaRegCompass, FaRegHeart, FaSistrix, FaTelegramPlane} from "react-icons/fa"
-import {MdHome} from"react-icons/md"
+import {FaRegCompass,FaSistrix, FaTelegramPlane} from "react-icons/fa"
+import { FcBusinessman,FcSms,FcMms,FcGlobe } from "react-icons/fc";
 import { ContextProvider } from "../global/Context";
-
+import log from "../images/logoo.png"
 const Navbar = () => {
 
-  const {model, openModel} = React.useContext(ContextProvider)
+  const {model, openModel,user,loader,logout} = React.useContext(ContextProvider)
   console.log("my model ", model);
   const openForms = () => {
     openModel();
   }
-  return (
-    <div className="navbar">
-      <div className="navbar__first">
-        <div className="navbar__firstlogo">
 
-          <img src="/Images/insta.png" />
+  const userLogout = () => {
+    logout()
+
+  }
+
+const checkUser = () => {
+
+  return !loader ? !loader && user ?(
+    <li><FcBusinessman  className="icn" onClick={openForms}/>{user.email}/ <span onClick={userLogout}><button type="button" class="btn btn-danger own-btn">Logout</button></span></li>)
+  
+   :(<li><FcBusinessman   className="icn" onClick={openForms}/></li>): <span class="spinner-border text-danger" role="status"> </span>
+ 
+        
+
+}
+
+  return (
+    <div className="navbarChat">
+      <div className="navbarChat__first">
+        <div className="navbarChat__firstlogo">
+
+         <img src={log} style={{width: "57%",height: "44%",marginLeft: "-32%",marginTop: "5%"}}/>
         
         </div>
       </div>
-      <div className="navbar__middle">
-        <div className="navbar__middle-search">
-          <input type="text" className="navbar__search" placeholder="Search" />
+      <div className="navbarChat__middle">
+        <div className="navbarChat__middle-search">
+          <input type="text" className="navbarChat__search" placeholder="Search" />
           <FaSistrix className="searchIcon"/>
         </div>
       </div>
-      <div className="navbar__last">
+      <div className="navbarChat__last">
         <li>
-          <MdHome className="navbar__icons"/>
+          <FcGlobe className="icn"/>
         </li>
         <li>
-          <FaTelegramPlane className="navbar__icons"/>
+          <FcMms className="icn"/>
         </li>
         <li>
-          <FaRegCompass className="navbar__icons"/>
+          <FcSms className="icn"/>
         </li>
+
         <li>
-          <FaRegHeart className="navbar__icons"/>
+      
+       {checkUser()}
         </li>
-        <li onClick={openForms}> Register/Login</li>
+      
       </div>
 
     </div>
