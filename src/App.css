@@ -1,39 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,600&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,600&display=swap");
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-::-webkit-input-placeholder{
-  color: #8e8e8e;
-  font-weight: 300;
-  font-size: 12px;
-
-}
-
-:-ms-input-placeholder{
+::-webkit-input-placeholder {
   color: #8e8e8e;
   font-weight: 300;
   font-size: 12px;
 }
 
-::placeholder{
+:-ms-input-placeholder {
   color: #8e8e8e;
   font-weight: 300;
   font-size: 12px;
 }
 
-body{
-  font-family: 'Open Sans', sans-serif;
+::placeholder {
+  color: #8e8e8e;
+  font-weight: 300;
+  font-size: 12px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
   background: #fafafa;
 }
-:root{
-  --white:#fff;
+:root {
+  --white: #fff;
   --black: #000;
 }
 
-.navbarChat{
+.navbarChat {
   position: fixed;
   top: 0;
   left: 0;
@@ -45,64 +44,57 @@ body{
   border-bottom: 1px solid #efefef;
   align-items: center;
 }
-.navbarChat__first{
+.navbarChat__first {
   width: 33.33333333333333%;
 }
-.navbarChat__firstlogo{
-  margin-top:4px ;
-
-
+.navbarChat__firstlogo {
+  margin-top: 4px;
 }
 .navbarChat__firstlogo img {
   object-fit: cover;
   display: block;
 }
 
-.navbarChat__middle{
+.navbarChat__middle {
   width: 33.33333333333333%;
   display: flex;
   justify-content: center;
-
-
 }
-.navbarChat__middle-search{
+.navbarChat__middle-search {
   position: relative;
-
-
 }
-.navbarChat__search{
+.navbarChat__search {
   background: #fafafa;
   border: 1px solid #d2dbdb;
   padding: 7px 45px;
-  border-radius: 3px ;
+  border-radius: 3px;
   outline: none;
   font-size: 14px;
   font-weight: 400;
 }
-.searchIcon{
+.searchIcon {
   position: absolute;
   top: 10px;
   left: 30px;
   color: rgb(157, 143, 143);
 }
-.navbarChat__last{
+.navbarChat__last {
   width: 33.33333333333333%;
   display: flex;
   justify-content: flex-end;
-
 }
-.navbarChat__last li{
+.navbarChat__last li {
   list-style-type: none;
   display: inline-block;
   margin: 0 10px;
   cursor: pointer;
 }
-.icn{
+.icn {
   font-size: 33px;
   cursor: pointer;
 }
 
-.create{
+.create {
   width: 65%;
   margin: 5% 0;
   padding: 10px;
@@ -111,41 +103,40 @@ body{
   border-radius: 3px;
 }
 
-.create__input{
+.create__input {
   width: 100%;
   height: 40px;
   padding: 0 13px;
   border: 1px solid #a7a2a2;
   border-radius: 2px;
+  font-weight: bold;
 }
-.create__second{
+.create__second {
   display: flex;
   align-items: center;
   margin-top: 10px;
 }
 
-.file{
+.file {
   display: none;
-
 }
-.gallery{
+.gallery {
   font-size: 38px;
   cursor: pointer;
   margin-left: 5px;
 }
-.create__second-a{
+.create__second-a {
   flex: 1;
-
 }
 
-.create__second-b{
+.create__second-b {
   flex: 1;
   text-align: right;
 }
 
-.btnC{
+.btnC {
   background: #f83a63;
-  color:var(--white);
+  color: var(--white);
   text-decoration: none;
   width: 20%;
   border: none;
@@ -154,21 +145,16 @@ body{
   cursor: pointer;
   display: inline-block;
   position: relative;
-
-  
-
 }
 
 .hover-underline-animation {
   display: inline-block;
   position: relative;
   color: #118532;
-
 }
 
-
 .hover-underline-animation:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -185,11 +171,18 @@ body{
   transform: scaleX(1);
   transform-origin: bottom left;
   cursor: pointer;
-
 }
 
-.own-btn{
+.own-btn {
   height: 26px !important;
   font-weight: bold !important;
   margin-left: 2% !important;
+}
+
+.post_main {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

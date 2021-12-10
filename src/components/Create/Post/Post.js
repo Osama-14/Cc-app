@@ -1,7 +1,9 @@
 import React, {useContext, useState } from 'react'
 import { FcLandscape } from "react-icons/fc";
-import { ContextProvider } from '../global/Context';
-import {auth,db, storage} from "../Config"
+import { ContextProvider } from '../../../global/Context';
+import {auth,db, storage} from "../../../Config"
+import "./post.css"
+
 
 const Create = () => {
     const {create} = useContext(ContextProvider)

@@ -1,0 +1,16 @@
+.btnC {
+  background: #f83a63;
+
+  width: 60px;
+  border: none;
+  padding: 4px 3px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+
+.create{
+  width: 40%;
+}

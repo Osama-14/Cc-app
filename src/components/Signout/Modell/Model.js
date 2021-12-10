@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ContextProvider } from "../global/Context";
+import { ContextProvider } from "../../../global/Context";
 import "./model.css";
 
 const Model = () => {
@@ -99,3 +99,17 @@ const Model = () => {
 };
 
 export default Model;
+
+
+
+// import React from 'react'
+
+// const Model = () => {
+//   return (
+//     <div>
+//       <h1>SIGN OUT</h1>
+//     </div>
+//   )
+// }
+
+// export default Model

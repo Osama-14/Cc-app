@@ -1,5 +1,5 @@
 import React from "react";
-import {FaRegCompass,FaSistrix, FaTelegramPlane} from "react-icons/fa"
+import {FaSistrix} from "react-icons/fa"
 import { FcBusinessman,FcSms,FcMms,FcGlobe } from "react-icons/fc";
 import { ContextProvider } from "../global/Context";
 import log from "../images/logoo.png"
@@ -61,6 +61,10 @@ const checkUser = () => {
       </div>
 
     </div>
+
+
+
+
   );
 };
 

@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #150019;
+}
+.navigation {
+  position: fixed;
+  width: 60px;
+  height: 100%;
+  background: #3e0748;
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.navigation:hover {
+  width: 300px;
+  background: #ea1d63;
+}
+
+.icons {
+  font-size: 24px;
+}
+.for-ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  margin-top: 44px;
+}
+.for-li {
+  position: relative;
+  display: flex !important;
+  width: 100%;
+  list-style: none;
+  align-items: center !important;
+  cursor: pointer;
+}
+.for-li:hover {
+  background: rgb(255, 101, 101);
+  margin-left: 10px;
+}
+.icons {
+  /* margin-left: -33p/x; */
+}
+.for-a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+.title {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: #ffffff;
+}
+.toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background: #330748;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.toggle:hover {
+  background: #ea1d63;
+}
+
+.sideBar {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  line-height: 60px;
+  text-align: center;
+  font-size: 40px;
+  color: #fff;
+}
+.Homeicon{
+    color: #fff;
+}
