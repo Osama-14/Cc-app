@@ -102,6 +102,14 @@ body {
   font-size: 40px;
   color: #fff;
 }
-.Homeicon{
-    color: #fff;
+.Homeicon {
+  color: #fff;
+}
+.user_email {
+  display: flex;
+  flex-direction: revert;
+  justify-content: flex-end;
+  margin-right: 25px;
+  color: wheat;
+  font-weight: bold;
 }

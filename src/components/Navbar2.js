@@ -1,52 +1,55 @@
 import React from "react";
 import ReorderIcon from "@material-ui/icons/Reorder";
 import { useNavigate } from "react-router-dom";
-import HomeIcon from '@material-ui/icons/Home';
-import PostAddIcon from '@material-ui/icons/PostAdd';
-import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-// import { ContextProvider } from "../global/Context";
+import HomeIcon from "@material-ui/icons/Home";
+import PostAddIcon from "@material-ui/icons/PostAdd";
+import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
+import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import SettingsApplicationsIcon from "@material-ui/icons/SettingsApplications";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { ContextProvider } from "../global/Context";
+import { FcBusinessman, FcSms, FcMms, FcGlobe } from "react-icons/fc";
 
 import "./navbar2.css";
 const Navbar2 = () => {
   const navigate = useNavigate();
-  navigate("/create");
   const toggleClose = () => {};
 
+  const { model, openModel, user, loader, logout } =
+    React.useContext(ContextProvider);
+  console.log("my model ", model);
+  const openForms = () => {
+    openModel();
+  };
 
+  const userLogout = () => {
+    logout();
+  };
 
-//   const {model, openModel,user,loader,logout} = React.useContext(ContextProvider)
-//   console.log("my model ", model);
-//   const openForms = () => {
-//     openModel();
-//   }
+  const checkUser = () => {
+    return !loader ? (
+      !loader && user ? (
+        <li className="user_email">
+          <FcBusinessman className="icn" onClick={openForms} />
+          {user.email}/{" "}
+          {/* <span onClick={userLogout}>
+            <button type="button" class="btn btn-danger own-btn">
+              Logout
+            </button>
+          </span> */}
+        </li>
+      ) : (
+        <li>
+          <FcBusinessman className="icn" onClick={openForms} />
+        </li>
+      )
+    ) : (
+      <span class="spinner-border text-danger" role="status">
+        {" "}
+      </span>
+    );
+  };
 
-//   const userLogout = () => {
-//     logout()
-
-//   }
-
-// const checkUser = () => {
-
-//   return (!loader ? !loader && user ?(
-//     <li> <span>className="icn" onClick={openForms}{user.email}</span> <span onClick={userLogout}><button type="button" class="btn btn-danger own-btn">Logout</button></span></li>)
-  
-//    :(<li><span   className="icn" onClick={openForms}></span></li>): <span class="spinner-border text-danger" role="status"> </span>
- 
-        
-
-//   )}
-
-
-
-  
-
-
-
-
-  
   return (
     <div>
       <div className="navigation">
@@ -55,66 +58,53 @@ const Navbar2 = () => {
         </div>
 
         <ul className="for-ul">
-        <li className="for-li" onClick={() => navigate("/signup")}>
+          <li className="for-li" onClick={() => navigate("/signup")}>
             <a href="#" />
             <span className="icon">
-
-              
-                <PersonOutlineIcon/>
+              <PersonOutlineIcon style={{color:"white"}} />
             </span>
             <span className="title">Profile</span>
           </li>
 
           <li className="for-li">
-            {/* <a className="for-a" href="#"/> */}
             <span className="icon icons">
-              <HomeIcon size={50} color="white"/>
+              <HomeIcon style={{color:"white"}} size={50} />
             </span>
             <span className="title">Home</span>
           </li>
-          <li className="for-li" onClick={() => navigate('/create')}>
+          <li className="for-li" onClick={() => navigate("/create")}>
             <a href="#" />
             <span className="icon">
-           < PostAddIcon/>
+              <PostAddIcon style={{color:"white"}} />
             </span>
             <span className="title">Post</span>
           </li>
 
           <li className="for-li">
-
             <a href="#" />
             <span className="icon">
-
-            <HelpOutlineIcon/>
+              <HelpOutlineIcon style={{color:"white"}} />
             </span>
             <span className="title">Help</span>
           </li>
           <li className="for-li">
             <a href="#" />
             <span className="icon">
-                <SettingsApplicationsIcon/>
+              <SettingsApplicationsIcon style={{color:"white"}} />
             </span>
             <span className="title">Settings</span>
           </li>
 
-          <li className="for-li">
+          <li className="for-li" onClick={userLogout}>
             <a href="#" />
             <span className="icon">
-            <ExitToAppIcon/>
-
-              
+              <ExitToAppIcon style={{color:"white"}} />
             </span>
             <span className="title">Logout</span>
           </li>
-
         </ul>
-
-        
       </div>
-      {/* <li>
-      
-      {checkUser()}
-       </li> */}
+      <li>{checkUser()}</li>
     </div>
   );
 };

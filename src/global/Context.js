@@ -87,7 +87,6 @@ const Context = (props) => {
   };
 
   React.useEffect(() => {
-    // testFirestoreCreate()
 
     auth.onAuthStateChanged((user) => {
       setUser(user);
@@ -106,7 +105,6 @@ const Context = (props) => {
         user,
         loader,
         logout,
-        // create,
       }}
     >
       {props.children}

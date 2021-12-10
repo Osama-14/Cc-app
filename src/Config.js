@@ -41,8 +41,5 @@ export {
   collection,
   addDoc,
   storage,
-  ref,
-  // push,
-  // set,
-  // database,
+  ref
 };

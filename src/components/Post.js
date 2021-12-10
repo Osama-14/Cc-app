@@ -4,7 +4,7 @@ const Post = () => {
     return (
         <div className="posts">
             <div className="posts__header">
-                <div className="posts__header-avatar">S</div>
+                <div className="posts__header-avatar"></div>
 
             </div>
             <div className="posts__img">
