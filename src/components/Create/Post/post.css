@@ -11,6 +11,8 @@
   position: relative;
 }
 
-.create{
-  width: 40%;
+.create {
+  width: 35%;
+  border-radius: 13px;
+  box-shadow: -1px 3px 27px 17px;
 }

@@ -1,15 +1,14 @@
 import firebase from "firebase/compat/app";
+
 import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+
 import { getStorage, ref } from "firebase/storage";
-import { collection, addDoc } from "firebase/firestore";
-import { getDatabase, push, set } from "firebase/database";
+import { collection, addDoc, getDocs, getFirestore, doc, query, where } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCECVYxTfIj6lpO883lVXhot4iBTm0DlYw",
@@ -22,7 +21,6 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-// const database = getDatabase();
 const storage = getStorage();
 
 
@@ -41,5 +39,9 @@ export {
   collection,
   addDoc,
   storage,
-  ref
+  ref,
+  getDocs,
+  doc,
+  query,
+  where
 };

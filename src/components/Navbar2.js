@@ -15,9 +15,9 @@ const Navbar2 = () => {
   const navigate = useNavigate();
   const toggleClose = () => {};
 
-  const { model, openModel, user, loader, logout } =
+  const { model, openModel, user, loader, logout, username } =
     React.useContext(ContextProvider);
-  console.log("my model ", model);
+  console.log("my model ", user);
   const openForms = () => {
     openModel();
   };
@@ -31,12 +31,8 @@ const Navbar2 = () => {
       !loader && user ? (
         <li className="user_email">
           <FcBusinessman className="icn" onClick={openForms} />
-          {user.email}/{" "}
-          {/* <span onClick={userLogout}>
-            <button type="button" class="btn btn-danger own-btn">
-              Logout
-            </button>
-          </span> */}
+          {username}
+
         </li>
       ) : (
         <li>
@@ -45,7 +41,6 @@ const Navbar2 = () => {
       )
     ) : (
       <span class="spinner-border text-danger" role="status">
-        {" "}
       </span>
     );
   };

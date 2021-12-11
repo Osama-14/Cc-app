@@ -9,6 +9,9 @@ import {
   db,
   ref,
   storage,
+  getDocs,
+  where,
+  query,
 } from "../Config";
 export const ContextProvider = createContext();
 
@@ -16,6 +19,7 @@ const Context = (props) => {
   const [model, setModel] = React.useState(true);
   const [user, setUser] = React.useState(null);
   const [loader, setLoader] = React.useState(true);
+  const [username, setUsername] = React.useState("");
 
   const openModel = () => {
     setModel(true);
@@ -27,6 +31,7 @@ const Context = (props) => {
     const { username, email, password } = user;
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
+      create(username, email);
       const displayName = { displayName: username };
       setModel(true);
     } catch (error) {
@@ -35,10 +40,22 @@ const Context = (props) => {
   };
 
   const login = async (user) => {
-    const { email, password } = user;
+    const { username, email, password } = user;
     const res = await signInWithEmailAndPassword(auth, email, password);
-    console.log(res);
+    //  res.user.updateProfile({displayName:username})
+
+    getUser(email);
+
     setModel(false);
+  };
+
+  const getUser = async (email) => {
+    const q = query(collection(db, "users"), where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      setUsername(doc.data().username);
+      console.log(doc.id, " => ", doc.data());
+    });
   };
 
   const logout = () => {
@@ -52,28 +69,11 @@ const Context = (props) => {
       });
   };
 
-  const create = async (data) => {
-    // const { title, image } = data;
-    // const upload = storageRef(`images/${image.name}`).put(image);
-    // upload.on(
-    //   "state_changed",
-    //   (snp) => {
-    //     let progress = (snp.bytesTransferred / snp.totalBytes)*100;
-    //     console.log(progress);
-    //   },
-    //   (err) => {
-    //     console.log(err)
-    //   },
-    //   () => {
-
-    //   }
-    // )
-
+  const create = async (username, email) => {
     try {
       const docRef = await addDoc(collection(db, "users"), {
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815,
+        username: username,
+        email: email,
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
@@ -87,10 +87,13 @@ const Context = (props) => {
   };
 
   React.useEffect(() => {
-
     auth.onAuthStateChanged((user) => {
       setUser(user);
       setLoader(false);
+      console.log("");
+      if (user) {
+        getUser(user.email);
+      }
     });
   }, []);
 
@@ -105,6 +108,7 @@ const Context = (props) => {
         user,
         loader,
         logout,
+        username,
       }}
     >
       {props.children}
