@@ -1,37 +1,79 @@
-import React, { useContext, useState } from "react";
+import { getDownloadURL, uploadBytesResumable } from "@firebase/storage";
+import React, {useState} from "react";
 import { FcLandscape } from "react-icons/fc";
+import { auth, db, storage,ref } from "../../../Config";
 import { ContextProvider } from "../../../global/Context";
-import { auth, db, storage } from "../../../Config";
 import "./post.css";
 
 const Create = () => {
-  const { create } = useContext(ContextProvider);
-  const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
 
-  const handleImage = (e) => {
-    setImage(e.target.files[0]);
-  };
 
-  const createPost = (e) => {
+  const { createPosts, user } =
+  React.useContext(ContextProvider);
+
+
+  const [progress, setProgress] = useState(0)
+
+  const formHandler = (e) => {
     e.preventDefault();
-    create({ title, image });
-  };
+    const file = e.target[0].files[0];
+    upoadFiles(file);
+  }
+
+
+  const upoadFiles = (file) => {
+    if (!file) return;
+    const storageRef = ref(storage, `/files/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef,file);
+
+    uploadTask.on("state_changed", (snapshot) => {
+      const prog = Math.round(
+        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+
+      );
+
+      setProgress(prog)
+    },
+    (err) => console.log(err),
+    () => {
+      getDownloadURL(uploadTask.snapshot.ref)
+      .then(url => createPosts(url, user.email));
+
+    }
+    );
+  }
+
+ 
+
 
   return (
     <div className="create">
-      <form onSubmit={createPost}>
+      <div className="posting">
+      <form onSubmit={formHandler}>
+        <input type="file" className="input" />
+        <button type="submit"> Upload</button>
+
+      </form>
+
+      
+  <hr/>
+  <h3>uploaded {progress} % </h3>
+
+<img id="new-img"/>
+  </div>
+
+
+
+      {/* <form onSubmit={formHandler}>
         <input
           type="text"
           className="create__input"
           placeholder="Whats New In your Mind !"
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
           required
         />
         <div className="create__second">
           <div className="create__second-a">
-            <label htmlFor="file">
+            <label for="img">
               <FcLandscape className="gallery" />
               <p
                 className="hover-underline-animation "
@@ -48,15 +90,14 @@ const Create = () => {
             <input
               type="file"
               className="file"
-              onChange={handleImage}
-              id="file"
+            id="img"
             />
           </div>
           <div className="create__second-b">
             <input type="submit" value="Post" className="btnC" />
           </div>
         </div>
-      </form>
+      </form> */}
     </div>
   );
 };

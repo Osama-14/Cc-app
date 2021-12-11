@@ -81,6 +81,19 @@ const Context = (props) => {
     }
   };
 
+
+  const createPosts = async (url, email) => {
+    try {
+      const docRef = await addDoc(collection(db, "posts"), {
+        url: url,
+        email: email,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
   const testStorage = () => {
     const imagesRef = ref(storage, "images");
     const spaceRef = ref(storage, "images/space.jpg");
@@ -109,6 +122,7 @@ const Context = (props) => {
         loader,
         logout,
         username,
+        createPosts
       }}
     >
       {props.children}
