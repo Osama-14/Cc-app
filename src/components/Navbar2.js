@@ -17,7 +17,6 @@ const Navbar2 = () => {
 
   const { model, openModel, user, loader, logout, username } =
     React.useContext(ContextProvider);
-  console.log("my model ", user);
   const openForms = () => {
     openModel();
   };
@@ -40,8 +39,8 @@ const Navbar2 = () => {
         </li>
       )
     ) : (
-      <span class="spinner-border text-danger" role="status">
-      </span>
+      <li class="spinner-border text-danger" role="status">
+      </li>
     );
   };
 
@@ -61,7 +60,7 @@ const Navbar2 = () => {
             <span className="title">Profile</span>
           </li>
 
-          <li className="for-li">
+          <li className="for-li" onClick={() => navigate("/home")}>
             <span className="icon icons">
               <HomeIcon style={{color:"white"}} size={50} />
             </span>
@@ -82,7 +81,7 @@ const Navbar2 = () => {
             </span>
             <span className="title">Help</span>
           </li>
-          <li className="for-li">
+          <li className="for-li" onClick={() => navigate("/settings")}>
             <a href="#" />
             <span className="icon">
               <SettingsApplicationsIcon style={{color:"white"}} />

@@ -42,7 +42,6 @@ const Context = (props) => {
   const login = async (user) => {
     const { username, email, password } = user;
     const res = await signInWithEmailAndPassword(auth, email, password);
-    //  res.user.updateProfile({displayName:username})
 
     getUser(email);
 
@@ -54,7 +53,7 @@ const Context = (props) => {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       setUsername(doc.data().username);
-      console.log(doc.id, " => ", doc.data());
+
     });
   };
 
@@ -81,7 +80,6 @@ const Context = (props) => {
     }
   };
 
-
   const createPosts = async (url, email) => {
     try {
       const docRef = await addDoc(collection(db, "posts"), {
@@ -94,16 +92,12 @@ const Context = (props) => {
     }
   };
 
-  const testStorage = () => {
-    const imagesRef = ref(storage, "images");
-    const spaceRef = ref(storage, "images/space.jpg");
-  };
+
 
   React.useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setUser(user);
       setLoader(false);
-      console.log("");
       if (user) {
         getUser(user.email);
       }
@@ -122,7 +116,7 @@ const Context = (props) => {
         loader,
         logout,
         username,
-        createPosts
+        createPosts,
       }}
     >
       {props.children}

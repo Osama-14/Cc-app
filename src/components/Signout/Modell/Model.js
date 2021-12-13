@@ -102,14 +102,3 @@ export default Model;
 
 
 
-// import React from 'react'
-
-// const Model = () => {
-//   return (
-//     <div>
-//       <h1>SIGN OUT</h1>
-//     </div>
-//   )
-// }
-
-// export default Model
