@@ -1,5 +1,4 @@
 import "./App.css";
-import Navbar from "./components/Navbar";
 import Model from "./components/Signout/index";
 import Context from "./global/Context";
 import Post from "./components/Post";

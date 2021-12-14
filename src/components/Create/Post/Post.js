@@ -1,7 +1,7 @@
 import { getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 import React, { useState } from "react";
 import firebase from "firebase/compat";
-import { addDoc, collection, db, storage, ref } from "../../../Config";
+import { addDoc, collection, db, storage, ref,doc,getDocs } from "../../../Config";
 import { ContextProvider } from "../../../global/Context";
 import "./post.css";
 
@@ -33,12 +33,6 @@ const Create = () => {
       (err) => console.log(err),
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
-          // db.collection("posts").add({
-          //   title:title,
-          //   image:url,
-          //   username:username,
-          //   currentTime:firebase.firestore.FieldValue.serverTimestamp()
-          // })
 
           try {
             const docRef = await addDoc(collection(db, "posts"), {
@@ -51,8 +45,12 @@ const Create = () => {
           } catch (e) {
             console.error("Error adding document: ", e);
           }
+          
         });
+        
       }
+
+      
     );
   };
 
