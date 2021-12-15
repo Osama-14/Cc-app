@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db, getDocs, collection } from "../../Config";
+import Index from "../Search-people/index"
 
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -76,10 +77,12 @@ const Home = () => {
 
   return (
     <div className="containerr">
-      <div className="custom-field">
+
+      <Index />
+      {/* <div className="custom-field">
         <input type="text" required />
         <span className="placeholder">Search</span>
-      </div>
+      </div> */}
       {/* <div>
         {posts.map((val, ind) => {
           return (

@@ -1,7 +1,6 @@
 import "./App.css";
 import Model from "./components/Signout/index";
 import Context from "./global/Context";
-import Post from "./components/Post";
 import Homee from "./components/Homee";
 import Navbar2 from "./components/Navbar2";
 import Setings from "./components/setings";
