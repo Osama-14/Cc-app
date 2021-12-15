@@ -16,3 +16,8 @@
   width: 600px !important;
   max-width: none!important;
 }
+
+.heart:hover{
+  color: rgb(244, 77, 52);
+
+}

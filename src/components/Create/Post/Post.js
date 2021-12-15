@@ -3,9 +3,30 @@ import React, { useState } from "react";
 import firebase from "firebase/compat";
 import { addDoc, collection, db, storage, ref,doc,getDocs } from "../../../Config";
 import { ContextProvider } from "../../../global/Context";
+import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual';
+
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
 import "./post.css";
 
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
+
+
+
 const Create = () => {
+
+  const classes = useStyles();
+
   const { username } = React.useContext(ContextProvider);
 
   const [progress, setProgress] = useState(0);
@@ -55,21 +76,26 @@ const Create = () => {
   };
 
   return (
+    
     <div className="create">
       <div className="posting">
-        <input
-          type="text"
-          className="input"
-          onChange={(e) => setTitle(e.target.value)}
-        />
+          <TextField id="standard-basic" label="What's new in your mind!" placeholder=""  onChange={(e) => setTitle(e.target.value)} />
         <form onSubmit={formHandler}>
-          c<input type="file" className="input" />
+          {/* <input type="file" className="input" /> */}
+          <PhotoSizeSelectActualIcon type="file"/> 
           <button type="submit"> Upload</button>
         </form>
         <hr />
         <h3>uploaded {progress} % </h3>
       </div>
+
+
+
+
+
+
     </div>
+    
   );
 };
 
