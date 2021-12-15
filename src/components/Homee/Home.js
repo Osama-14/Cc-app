@@ -27,11 +27,9 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,
     paddingTop: "56.25%",
-    // objectFit:"contain",
-    // width:"100%",
-    // height:"100%"
+  
 
-    width: "200px",
+    width: "400px",
     height: "400px",
     objectFit: "cover"
   },
@@ -94,9 +92,13 @@ const Home = () => {
         })}
       </div>   */}
 
+
+
       {posts.map((val, ind) => {
         return (
-          <Card className={classes.root}>
+
+          <div>
+          <Card className="card-bottom" className={classes.root}>
             <CardHeader
               avatar={
                 <Avatar aria-label="recipe" className={classes.avatar}>
@@ -108,8 +110,9 @@ const Home = () => {
                   <MoreVertIcon />
                 </IconButton>
               }
-              title={val.title}
+              title={val.username}
               subheader={new Date(val.currentTime).toLocaleDateString()}
+              // subheader={new Date(val.currentTime).toLocaleTimeString()}
             />
     
             <CardMedia
@@ -144,7 +147,7 @@ const Home = () => {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>Method:</Typography>
+                <Typography paragraph></Typography>
                 <Typography paragraph></Typography>
                 <Typography paragraph></Typography>
                 <Typography paragraph></Typography>
@@ -152,6 +155,7 @@ const Home = () => {
               </CardContent>
             </Collapse>
           </Card>
+          </div>
         );
       })}
     </div>

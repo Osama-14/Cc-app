@@ -31,7 +31,6 @@ const Navbar2 = () => {
         <li className="user_email">
           <FcBusinessman className="icn" onClick={openForms} />
           {username}
-
         </li>
       ) : (
         <li>
@@ -39,13 +38,12 @@ const Navbar2 = () => {
         </li>
       )
     ) : (
-      <li class="spinner-border text-danger" role="status">
-      </li>
+      <li class="spinner-border text-danger" role="status"></li>
     );
   };
 
   return (
-    <div>
+    <>
       <div className="navigation">
         <div className="toggle">
           <ReorderIcon className="sideBar" onClick={toggleClose} />
@@ -55,21 +53,21 @@ const Navbar2 = () => {
           <li className="for-li" onClick={() => navigate("/signup")}>
             <a href="#" />
             <span className="icon">
-              <PersonOutlineIcon style={{color:"white"}} />
+              <PersonOutlineIcon style={{ color: "white" }} />
             </span>
             <span className="title">Profile</span>
           </li>
 
           <li className="for-li" onClick={() => navigate("/home")}>
             <span className="icon icons">
-              <HomeIcon style={{color:"white"}} size={50} />
+              <HomeIcon style={{ color: "white" }} size={50} />
             </span>
             <span className="title">Home</span>
           </li>
           <li className="for-li" onClick={() => navigate("/create")}>
             <a href="#" />
             <span className="icon">
-              <PostAddIcon style={{color:"white"}} />
+              <PostAddIcon style={{ color: "white" }} />
             </span>
             <span className="title">Post</span>
           </li>
@@ -77,14 +75,14 @@ const Navbar2 = () => {
           <li className="for-li">
             <a href="#" />
             <span className="icon">
-              <HelpOutlineIcon style={{color:"white"}} />
+              <HelpOutlineIcon style={{ color: "white" }} />
             </span>
             <span className="title">Help</span>
           </li>
           <li className="for-li" onClick={() => navigate("/settings")}>
             <a href="#" />
             <span className="icon">
-              <SettingsApplicationsIcon style={{color:"white"}} />
+              <SettingsApplicationsIcon style={{ color: "white" }} />
             </span>
             <span className="title">Settings</span>
           </li>
@@ -92,14 +90,19 @@ const Navbar2 = () => {
           <li className="for-li" onClick={userLogout}>
             <a href="#" />
             <span className="icon">
-              <ExitToAppIcon style={{color:"white"}} />
+              <ExitToAppIcon style={{ color: "white" }} />
             </span>
             <span className="title">Logout</span>
           </li>
         </ul>
+
+
+
+
+        
       </div>
       <li>{checkUser()}</li>
-    </div>
+    </>
   );
 };
 

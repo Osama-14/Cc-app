@@ -7,7 +7,7 @@
 
 body {
   min-height: 100vh;
-  /* background: #150019; */
+  background: #e6ebdd;
 }
 .navigation {
   position: fixed;
@@ -21,6 +21,7 @@ body {
 .navigation:hover {
   width: 300px;
   background: #ea1d63;
+  z-index: 100;
 }
 
 .icons {
@@ -110,6 +111,6 @@ body {
   flex-direction: revert;
   justify-content: flex-end;
   margin-right: 25px;
-  color: wheat;
+  color: blue;
   font-weight: bold;
 }
