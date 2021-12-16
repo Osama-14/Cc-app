@@ -44,55 +44,55 @@ const Navbar2 = () => {
 
   return (
     <>
-      <div className="navigation">
-        <div className="toggle">
-          <ReorderIcon className="sideBar" onClick={toggleClose} />
+      <div className="chat-navigation">
+        <div className="chat-toggle">
+          <ReorderIcon className="chat-sideBar" onClick={toggleClose} />
         </div>
 
-        <ul className="for-ul">
-          <li className="for-li" onClick={() => navigate("/signup")}>
+        <ul className="chat-for-ul">
+          <li className="chat-for-li" onClick={() => navigate("/signup")}>
             <a href="#" />
-            <span className="icon">
+            <span className="chat-icon">
               <PersonOutlineIcon style={{ color: "white" }} />
             </span>
-            <span className="title">Profile</span>
+            <span className="chat-title">Profile</span>
           </li>
 
-          <li className="for-li" onClick={() => navigate("/home")}>
-            <span className="icon icons">
+          <li className="chat-for-li" onClick={() => navigate("/home")}>
+            <span className="chat-icon icons">
               <HomeIcon style={{ color: "white" }} size={50} />
             </span>
-            <span className="title">Home</span>
+            <span className="chat-title">Home</span>
           </li>
-          <li className="for-li" onClick={() => navigate("/create")}>
+          <li className="chat-for-li" onClick={() => navigate("/create")}>
             <a href="#" />
-            <span className="icon">
+            <span className="chat-icon">
               <PostAddIcon style={{ color: "white" }} />
             </span>
-            <span className="title">Post</span>
+            <span className="chat-title">Post</span>
           </li>
 
-          <li className="for-li">
+          <li className="chat-for-li">
             <a href="#" />
-            <span className="icon">
+            <span className="chat-icon">
               <HelpOutlineIcon style={{ color: "white" }} />
             </span>
-            <span className="title">Help</span>
+            <span className="chat-title">Help</span>
           </li>
-          <li className="for-li" onClick={() => navigate("/settings")}>
+          <li className="chat-for-li" onClick={() => navigate("/settings")}>
             <a href="#" />
-            <span className="icon">
+            <span className="chat-icon">
               <SettingsApplicationsIcon style={{ color: "white" }} />
             </span>
-            <span className="title">Settings</span>
+            <span className="chat-title">Settings</span>
           </li>
 
-          <li className="for-li" onClick={userLogout}>
+          <li className="chat-for-li" onClick={userLogout}>
             <a href="#" />
-            <span className="icon">
+            <span className="chat-icon">
               <ExitToAppIcon style={{ color: "white" }} />
             </span>
-            <span className="title">Logout</span>
+            <span className="chat-title">Logout</span>
           </li>
         </ul>
 
