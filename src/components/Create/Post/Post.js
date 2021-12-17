@@ -69,6 +69,7 @@ const Create = () => {
               title: title,
               image: url,
               username: username,
+              uid:firebase.auth().currentUser.uid,
               currentTime: firebase.firestore.FieldValue.serverTimestamp(),
             });
             console.log("Document written with ID: ", docRef.id);

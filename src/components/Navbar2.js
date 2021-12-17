@@ -11,7 +11,7 @@ import { ContextProvider } from "../global/Context";
 import { FcBusinessman, FcSms, FcMms, FcGlobe } from "react-icons/fc";
 
 import "./navbar2.css";
-const Navbar2 = () => {
+const Navbar2 = ({...props}) => {
   const navigate = useNavigate();
   const toggleClose = () => {};
 
@@ -55,7 +55,15 @@ const Navbar2 = () => {
             <span className="chat-icon">
               <PersonOutlineIcon style={{ color: "white" }} />
             </span>
-            <span className="chat-title">Profile</span>
+            <span className="chat-title">New User</span>
+          </li>
+
+          <li className="chat-for-li" onClick={() => navigate("/profile")}>
+            <a href="#" />
+            <span className="chat-icon">
+              <PersonOutlineIcon style={{ color: "white" }} />
+            </span>
+            <span className="chat-title">User Profile</span>
           </li>
 
           <li className="chat-for-li" onClick={() => navigate("/home")}>

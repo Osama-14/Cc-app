@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { db, getDocs, collection } from "../../Config";
+import { db, getDocs, collection, query, where, auth } from "../../Config";
 
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -17,9 +17,9 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-import "./home.css";
+import "./profile.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = ({ ...props }) => {
   const classes = useStyles();
-  const navigate = useNavigate();
+  const params = useParams();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -59,13 +59,22 @@ const Home = ({ ...props }) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    console.log("============", props);
-    getPostFromFirebase();
+    console.log(params);
+    // getPostFromFirebase();
   }, []);
+
+  useEffect(() => {
+    getPostFromFirebase();
+  }, [params && params.uid]);
 
   const getPostFromFirebase = async () => {
     setPosts([]);
-    const querySnapshot = await getDocs(collection(db, "posts"));
+
+    console.log(props);
+    let uid = params.uid ? params.uid : auth.currentUser.uid;
+    const q = query(collection(db, "posts"), where("uid", "==", uid));
+
+    const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshotsi
       let obj = doc.data();
@@ -96,9 +105,7 @@ const Home = ({ ...props }) => {
 
       {posts.map((val, ind) => {
         return (
-          <div
-          key={ind}
-          onClick={() => navigate(`/profile/${val.uid}`)}>
+          <div key={ind}>
             <Card className="card-bottom" className={classes.root}>
               <CardHeader
                 avatar={

@@ -20,7 +20,7 @@ body {
 
 .chat-navigation:hover {
   width: 300px;
-  background: #ea1d63;
+  background: #780c8d;
   z-index: 100;
 }
 
@@ -35,7 +35,7 @@ body {
   display: flex;
   flex-direction: column;
   font-weight: bold;
-  margin-top: 44px;
+  margin-top: 60px;
   margin-left: -32px;
 }
 .chat-for-li {
@@ -46,13 +46,11 @@ body {
   align-items: center !important;
   cursor: pointer;
 }
-.for-li:hover {
-  background: rgb(255, 101, 101);
+.chat-for-li:hover {
+  background: rgb(189, 2, 173) !important;
   margin-left: 10px;
 }
-.icons {
-  /* margin-left: -33p/x; */
-}
+
 .chat-for-a {
   position: relative;
   display: block;
@@ -92,7 +90,7 @@ body {
   justify-content: center;
 }
 .chat-toggle:hover {
-  background: #ea1d63;
+  background: #ca940b;
 }
 
 .chat-sideBar {

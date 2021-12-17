@@ -31,7 +31,8 @@ const Context = (props) => {
     const { username, email, password } = user;
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
-      create(username, email);
+      
+      create(username, email, res && res.user.uid);
       const displayName = { displayName: username };
       setModel(true);
     } catch (error) {
@@ -68,11 +69,12 @@ const Context = (props) => {
       });
   };
 
-  const create = async (username, email) => {
+  const create = async (username, email, uid) => {
     try {
       const docRef = await addDoc(collection(db, "users"), {
         username: username,
         email: email,
+        uid: uid
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
