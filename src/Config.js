@@ -43,5 +43,5 @@ export {
   getDocs,
   doc,
   query,
-  where
+  where,
 };

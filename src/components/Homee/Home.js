@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { db, getDocs, collection } from "../../Config";
+import { db, getDocs, collection,Timestamp  } from "../../Config";
 
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -148,9 +148,7 @@ const Home = ({ ...props }) => {
               </CardActions>
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                  <Typography paragraph> {val.title}</Typography>
-
-                  <Typography></Typography>
+                <Typography paragraph> {val.title}</Typography>
                 </CardContent>
               </Collapse>
             </Card>
