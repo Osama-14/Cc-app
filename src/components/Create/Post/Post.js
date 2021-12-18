@@ -13,12 +13,10 @@ import {
 import { ContextProvider } from "../../../global/Context";
 
 import { makeStyles } from "@material-ui/core/styles";
-import ImageIcon from '@material-ui/icons/Image';
-import {Modal, Button } from "react-bootstrap"
+import ImageIcon from "@material-ui/icons/Image";
+import { Modal, Button } from "react-bootstrap";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./post.css";
 
@@ -28,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       width: "25ch",
     },
-
   },
 }));
 
@@ -70,7 +67,7 @@ const Create = () => {
               title: title,
               image: url,
               username: username,
-              uid:firebase.auth().currentUser.uid,
+              uid: firebase.auth().currentUser.uid,
               currentTime: firebase.firestore.FieldValue.serverTimestamp(),
             });
             console.log("Document written with ID: ", docRef.id);
@@ -85,44 +82,63 @@ const Create = () => {
   return (
     <div className="create">
       <div className="posting">
-        <input onClick={handleShow} type="text" className="postsInp" placeholder=" Whats New In your mind!"/>
+        <input
+          onClick={handleShow}
+          type="text"
+          className="postsInp"
+          placeholder=" Whats New In your mind!"
+        />
       </div>
       <Modal show={show} onHide={handleClose}>
-
         <Modal.Header closeButton>
-        <div className="post-head">
-          <Modal.Title>Posts</Modal.Title>
+          <div className="post-head">
+            <Modal.Title>Posts</Modal.Title>
           </div>
-
         </Modal.Header>
-       
+
         <Modal.Body>
           <div className="post-inp-field">
-        <input type="text" onChange={(e) => setTitle(e.target.value)} className="posting-text" placeholder="What's new in your mind!"/>
-        </div>
+            <input
+              type="text"
+              onChange={(e) => setTitle(e.target.value)}
+              className="posting-text"
+              placeholder="What's new in your mind!"
+            />
+          </div>
 
-        {/* <div className="form-field"> */}
-        {/* <form onSubmit={formHandler} >
+          {/* <div className="form-field"> */}
+          {/* <form onSubmit={formHandler} >
           
           <input type="file" className="input"  />
         
           <button type="submit"> Upload</button>
         </form> */}
-        {/* </div> */}
+          {/* </div> */}
         </Modal.Body>
 
         <Modal.Footer className="modal-foot">
           <div className="post-footer">
-        <form onSubmit={formHandler} >
-          <ImageIcon style={{color:"#44d596",fontSize:"30px"}} />  < input type="file" className="select-files"/> 
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose} type="submit">
-            Post 
-          </Button>
-     
-          </form>
+            <form onSubmit={formHandler}>
+              <div>
+                <input
+                  type="file"
+                  className="select-files"
+                  style={{ display: "none" }}
+                  id="choose-img"
+                />
+                <label for="choose-img">
+                  <ImageIcon style={{ color: "#44d596", fontSize: "30px" }} />{" "}
+                </label>
+              </div>
+              {/* <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button> */}
+              <div>
+                <Button className="post_btn_modal" variant="primary" onClick={handleClose} type="submit">
+                  Post
+                </Button>
+              </div>
+            </form>
           </div>
         </Modal.Footer>
       </Modal>

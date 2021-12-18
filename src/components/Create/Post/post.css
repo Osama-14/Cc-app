@@ -1,56 +1,68 @@
-*{
-    font-family: sans-serif;
+* {
+  font-family: sans-serif;
 }
 
-.create{
-    width: 500px;
-    height: 70px;
-    border: 3px solid #676666;
-    border-radius: 53px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.create {
+  width: 500px;
+  height: 70px;
+  border: 3px solid #676666;
+  border-radius: 53px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.posting{
-    width: 100%;
-}
-
-.postsInp{
-    width: 100%;
-    border: none;
-    height: 40px;
-    border-radius: 33px;
-    background: rgb(247 247 247);
-    font-weight: bold;
-    text-align: center;
+.posting {
+  width: 100%;
 }
 
-.postsInp:active{
-    border: none;
-}
-
-.post-head{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-
-.post-inp-field{
-width: 100%;
-display: flex;
-justify-content: center;
-}
-
-.posting-text{
-    border: none;
-    background: #e7e7e7;
-    border-radius: 39px;
-    width: 70%;
-    height: 40px;
-    padding:10px;
-}
-
-.posting-text:active{
+.postsInp {
+  width: 100%;
   border: none;
+  height: 40px;
+  border-radius: 33px;
+  background: rgb(247 247 247);
+  font-weight: bold;
+  text-align: center;
+}
+
+.postsInp:active {
+  outline: none;
+}
+.postsInp:focus {
+  outline: none;
+}
+.post-head {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.post-inp-field {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.posting-text {
+  border: none;
+  background: #e7e7e7;
+  border-radius: 39px;
+  width: 70%;
+  height: 40px;
+  padding: 10px;
+}
+
+.posting-text:focus {
+  outline: none;
+}
+
+.modal-footer {
+  display: flex !important;
+  justify-content: flex-start !important;
+}
+.post-footer {
+  width: 200%;
+}
+.post_btn_modal {
+  width: 100%;
 }

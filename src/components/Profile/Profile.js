@@ -87,21 +87,8 @@ const Home = ({ ...props }) => {
 
   return (
     <div className="containerr">
-      {/* <div className="custom-field">
-        <input type="text" onChange={searchingPpl} required />
-        <span className="placeholder">Search</span>
-      </div> */}
-      {/* <div>
-        {posts.map((val, ind) => {
-          return (
-            <div key={ind}>
-              <div style={{color:"white"}}>{val.title}</div>
-              <div style={{color:"white"}}>{new Date(val.currentTime).toLocaleDateString()}</div>
-              <img src={val.image} />
-            </div>
-          );
-        })}
-      </div>   */}
+
+        
 
       {posts.map((val, ind) => {
         return (
