@@ -17,7 +17,7 @@ import ImageIcon from "@material-ui/icons/Image";
 import { Modal, Button } from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import Picker from 'emoji-picker-react';
+import InputEmoji from "react-input-emoji";
 
 import "./post.css";
 
@@ -33,13 +33,13 @@ const useStyles = makeStyles((theme) => ({
 const Create = () => {
   const classes = useStyles();
   const [show, setShow] = useState(false);
+  const [text, setText] = useState("");
 
-  const [chosenEmoji, setChosenEmoji] = useState(null);
-
-  const onEmojiClick = (event, emojiObject) => {
-    setChosenEmoji(emojiObject);
-  };
-
+  function handleOnEnter(e) {
+    console.log("enter", text);
+    setText(e.target.value);
+    alert(e.target.value, "eeeeeeeee");
+  }
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { username } = React.useContext(ContextProvider);
@@ -71,7 +71,7 @@ const Create = () => {
         getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
           try {
             const docRef = await addDoc(collection(db, "posts"), {
-              title: title,
+              title: text,
               image: url,
               username: username,
               uid: firebase.auth().currentUser.uid,
@@ -105,11 +105,20 @@ const Create = () => {
 
         <Modal.Body>
           <div className="post-inp-field">
-            <input
+            {/* <input
               type="text"
               onChange={(e) => setTitle(e.target.value)}
               className="posting-text"
               placeholder="What's new in your mind!"
+            /> */}
+
+            <InputEmoji
+              value={text}
+              // onChange={setText}
+              onChange={(e) => setText(e.target.value)}
+              cleanOnEnter
+              onEnter={handleOnEnter}
+              placeholder="Type a message"
             />
           </div>
 
@@ -138,19 +147,16 @@ const Create = () => {
                 </label>
               </div>
 
-              <div>
-      {chosenEmoji ? (
-        <span>You chose: {chosenEmoji.emoji}</span>
-      ) : (
-        <span>No emoji Chosen</span>
-      )}
-      <Picker onEmojiClick={onEmojiClick} />
-    </div>
               {/* <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button> */}
               <div>
-                <Button className="post_btn_modal" variant="primary" onClick={handleClose} type="submit">
+                <Button
+                  className="post_btn_modal"
+                  variant="primary"
+                  onClick={handleClose}
+                  type="submit"
+                >
                   Post
                 </Button>
               </div>
