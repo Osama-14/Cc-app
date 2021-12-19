@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { db, getDocs, collection, query, where, auth } from "../../Config";
-
+import Cover from "../../images/cover.jpg";
+import Profile from "../../images/profile.jpeg";
+import Prof from "../../images/prof.jpg";
+import MessageIcon from '@material-ui/icons/Message';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -65,30 +69,64 @@ const Home = ({ ...props }) => {
 
   useEffect(() => {
     getPostFromFirebase();
-  }, [params && params.uid]);
+  }, [
+    (params && params.uid !== undefined) ||
+      (auth.currentUser && auth.currentUser.uid),
+  ]);
 
   const getPostFromFirebase = async () => {
     setPosts([]);
 
-    console.log(props);
-    let uid = params.uid ? params.uid : auth.currentUser.uid;
-    const q = query(collection(db, "posts"), where("uid", "==", uid));
+    let uid;
 
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshotsi
-      let obj = doc.data();
-      obj.key = doc.id;
-      console.log(doc.id, " => ", doc.data());
-      console.log(obj);
-      setPosts((earlierPosts) => [...earlierPosts, obj]);
-    });
+    // console.log(props, auth.currentUser);
+    if (params && params.uid !== undefined) {
+      uid = params.uid;
+    } else if (auth.currentUser && auth.currentUser.uid) {
+      uid = auth.currentUser.uid;
+    }
+
+    if (uid && uid !== undefined) {
+      const q = query(collection(db, "posts"), where("uid", "==", uid));
+
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshotsi
+        let obj = doc.data();
+        obj.key = doc.id;
+        console.log(doc.id, " => ", doc.data());
+        console.log(obj);
+        setPosts((earlierPosts) => [...earlierPosts, obj]);
+      });
+    }
   };
 
   return (
     <div className="containerr">
+      <div className="profile-container">
+        <img src={Cover} className="profile-img" />
+        <div className="profile-details">
+          <div className="pd-left">
+            <div className="pd-row">
+              <img src={Profile} className="mutual-friend" />
 
-        
+              <div>
+                <h3>Unknown</h3>
+                <p>123 friends - 40 mutual</p>
+                <img src={Prof} className="prof"/>
+                <img src={Prof} className="prof"/>
+                <img src={Prof} className="prof"/>
+                <img src={Prof} className="prof"/>
+
+              </div>
+            </div>
+          </div>
+          <div className="pd-right">
+            <button className="addBtn" ><GroupAddIcon/> </button>
+            <button className="addBtn"> < MessageIcon/></button>
+          </div>
+        </div>
+      </div>
 
       {posts.map((val, ind) => {
         return (

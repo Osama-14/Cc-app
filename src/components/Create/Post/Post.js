@@ -37,8 +37,7 @@ const Create = () => {
 
   function handleOnEnter(e) {
     console.log("enter", text);
-    setText(e.target.value);
-    alert(e.target.value, "eeeeeeeee");
+    alert(e, "eeeeeeeee");
   }
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -53,37 +52,52 @@ const Create = () => {
     upoadFiles(file);
   };
 
-  const upoadFiles = (file) => {
-    if (!file) return;
-    const storageRef = ref(storage, `/files/${file.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
+  const upoadFiles = async(file) => {
+    console.log(file)
+    if (file && file.name) {
+      const storageRef = ref(storage, `/files/${file.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const prog = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        setProgress(prog);
-      },
-      (err) => console.log(err),
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
-          try {
-            const docRef = await addDoc(collection(db, "posts"), {
-              title: text,
-              image: url,
-              username: username,
-              uid: firebase.auth().currentUser.uid,
-              currentTime: firebase.firestore.FieldValue.serverTimestamp(),
-            });
-            console.log("Document written with ID: ", docRef.id);
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const prog = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(prog);
+        },
+        (err) => console.log(err),
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
+            try {
+              const docRef = await addDoc(collection(db, "posts"), {
+                title: text,
+                image: url,
+                username: username,
+                uid: firebase.auth().currentUser.uid,
+                currentTime: new Date().toTimeString(),
+              });
+              console.log("Document written with ID: ", docRef.id);
+            } catch (e) {
+              console.error("Error adding document: ", e);
+            }
+          });
+        }
+      );
+    } else {
+      try {
+        const docRef = await addDoc(collection(db, "posts"), {
+          title: text,
+          image: "",
+          username: username,
+          uid: firebase.auth().currentUser.uid,
+          currentTime: new Date().toTimeString()
         });
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
       }
-    );
+    }
   };
 
   return (
@@ -114,10 +128,9 @@ const Create = () => {
 
             <InputEmoji
               value={text}
-              // onChange={setText}
-              onChange={(e) => setText(e.target.value)}
+              onChange={setText}
               cleanOnEnter
-              onEnter={handleOnEnter}
+              onEnter={upoadFiles}
               placeholder="Type a message"
             />
           </div>
