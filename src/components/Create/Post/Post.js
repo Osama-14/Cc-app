@@ -17,6 +17,7 @@ import ImageIcon from "@material-ui/icons/Image";
 import { Modal, Button } from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import Picker from 'emoji-picker-react';
 
 import "./post.css";
 
@@ -32,6 +33,12 @@ const useStyles = makeStyles((theme) => ({
 const Create = () => {
   const classes = useStyles();
   const [show, setShow] = useState(false);
+
+  const [chosenEmoji, setChosenEmoji] = useState(null);
+
+  const onEmojiClick = (event, emojiObject) => {
+    setChosenEmoji(emojiObject);
+  };
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -130,6 +137,15 @@ const Create = () => {
                   <ImageIcon style={{ color: "#44d596", fontSize: "30px" }} />{" "}
                 </label>
               </div>
+
+              <div>
+      {chosenEmoji ? (
+        <span>You chose: {chosenEmoji.emoji}</span>
+      ) : (
+        <span>No emoji Chosen</span>
+      )}
+      <Picker onEmojiClick={onEmojiClick} />
+    </div>
               {/* <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button> */}
