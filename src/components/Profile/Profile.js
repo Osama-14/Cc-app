@@ -77,8 +77,7 @@ const Home = ({ ...props }) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    console.log(params);
-    // getPostFromFirebase();
+
   }, []);
 
   useEffect(() => {
@@ -232,12 +231,7 @@ const Home = ({ ...props }) => {
 
         <Modal.Body>
           <div className="post-inp-field">
-            {/* <input
-              type="text"
-              onChange={(e) => setTitle(e.target.value)}
-              className="posting-text"
-              placeholder="What's new in your mind!"
-            /> */}
+
 
             <InputEmoji
               value={text}
@@ -248,14 +242,7 @@ const Home = ({ ...props }) => {
             />
           </div>
 
-          {/* <div className="form-field"> */}
-          {/* <form onSubmit={formHandler} >
-          
-          <input type="file" className="input"  />
-        
-          <button type="submit"> Upload</button>
-        </form> */}
-          {/* </div> */}
+
         </Modal.Body>
 
         <Modal.Footer className="modal-foot">
@@ -273,9 +260,6 @@ const Home = ({ ...props }) => {
                 </label>
               </div>
 
-              {/* <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button> */}
               <div>
                 <Button
                   className="post_btn_modal"

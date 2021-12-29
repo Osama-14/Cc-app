@@ -11,14 +11,11 @@ import {
   getDocs,
 } from "../../../Config";
 import { ContextProvider } from "../../../global/Context";
-
 import { makeStyles } from "@material-ui/core/styles";
 import ImageIcon from "@material-ui/icons/Image";
 import { Modal, Button } from "react-bootstrap";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import InputEmoji from "react-input-emoji";
-
 import "./post.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -31,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Create = () => {
+
+
   const classes = useStyles();
   const [show, setShow] = useState(false);
   const [text, setText] = useState("");
@@ -100,8 +99,14 @@ const Create = () => {
     }
   };
 
+
+
+  
+
   return (
     <div className="create">
+
+
       <div className="posting">
         <input
           onClick={handleShow}
@@ -135,14 +140,7 @@ const Create = () => {
             />
           </div>
 
-          {/* <div className="form-field"> */}
-          {/* <form onSubmit={formHandler} >
-          
-          <input type="file" className="input"  />
-        
-          <button type="submit"> Upload</button>
-        </form> */}
-          {/* </div> */}
+         
         </Modal.Body>
 
         <Modal.Footer className="modal-foot">

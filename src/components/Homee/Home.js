@@ -61,7 +61,6 @@ const Home = ({ ...props }) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    console.log("============", props);
     getPostFromFirebase();
   }, []);
 
@@ -69,11 +68,8 @@ const Home = ({ ...props }) => {
     setPosts([]);
     const querySnapshot = await getDocs(collection(db, "posts"));
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshotsi
       let obj = doc.data();
       obj.key = doc.id;
-      console.log(doc.id, " => ", doc.data());
-      console.log(obj);
       setPosts((earlierPosts) => [...earlierPosts, obj]);
     });
   };
@@ -87,31 +83,29 @@ const Home = ({ ...props }) => {
     );
 
     const querySnapshot = await getDocs(q);
-    console.log("query", querySnapshot.empty);
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
       let obj = doc.data();
       obj.key = doc.id;
-      console.log(doc.id, " => ", doc.data());
-      console.log(obj);
       setPosts((earlierPosts) => [...earlierPosts, obj]);
         });
 
   };
 
+  
+
   return (
     <div className="containerr">
-      <Searchpeople getData={getData} />
+      <Searchpeople getData={getData}
+      
+      
+      />
       {posts.map((val, ind) => {
         return (
           <div key={ind} onClick={() => navigate(`/profile/${val.uid}`)}>
             <Card className="card-bottom" className={classes.root}>
               <CardHeader
                 avatar={
-                  <Avatar
-                    aria-label="recipe"
-                    className={classes.avatar}
-                  ></Avatar>
+                  <Avatar alt="Remy Sharp" />
                 }
                 action={
                   <IconButton aria-label="settings">
