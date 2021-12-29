@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { db, getDocs, collection,Timestamp  } from "../../Config";
+import { db, getDocs, collection, query, where } from "../../Config";
 
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -18,6 +18,7 @@ import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useNavigate } from "react-router-dom";
+import Searchpeople from "../Search-people/SearchPeople";
 
 import "./home.css";
 
@@ -52,6 +53,7 @@ const Home = ({ ...props }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [expanded, setExpanded] = React.useState(false);
+  const [data, setData] = useState(null);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -76,29 +78,33 @@ const Home = ({ ...props }) => {
     });
   };
 
+  const getData = async (val) => {
+    setPosts([]);
+
+    const q = await query(
+      collection(db, "posts"),
+      where("username", "==", val.target.value)
+    );
+
+    const querySnapshot = await getDocs(q);
+    console.log("query", querySnapshot.empty);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      let obj = doc.data();
+      obj.key = doc.id;
+      console.log(doc.id, " => ", doc.data());
+      console.log(obj);
+      setPosts((earlierPosts) => [...earlierPosts, obj]);
+        });
+
+  };
+
   return (
     <div className="containerr">
-      {/* <div className="custom-field">
-        <input type="text" onChange={searchingPpl} required />
-        <span className="placeholder">Search</span>
-      </div> */}
-      {/* <div>
-        {posts.map((val, ind) => {
-          return (
-            <div key={ind}>
-              <div style={{color:"white"}}>{val.title}</div>
-              <div style={{color:"white"}}>{new Date(val.currentTime).toLocaleDateString()}</div>
-              <img src={val.image} />
-            </div>
-          );
-        })}
-      </div>   */}
-
+      <Searchpeople getData={getData} />
       {posts.map((val, ind) => {
         return (
-          <div
-          key={ind}
-          onClick={() => navigate(`/profile/${val.uid}`)}>
+          <div key={ind} onClick={() => navigate(`/profile/${val.uid}`)}>
             <Card className="card-bottom" className={classes.root}>
               <CardHeader
                 avatar={
@@ -148,7 +154,7 @@ const Home = ({ ...props }) => {
               </CardActions>
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                <Typography paragraph> {val.title}</Typography>
+                  <Typography paragraph> {val.title}</Typography>
                 </CardContent>
               </Collapse>
             </Card>

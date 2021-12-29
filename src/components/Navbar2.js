@@ -9,6 +9,7 @@ import SettingsApplicationsIcon from "@material-ui/icons/SettingsApplications";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { ContextProvider } from "../global/Context";
 import { FcBusinessman, FcSms, FcMms, FcGlobe } from "react-icons/fc";
+import Nav from '../components/animatedNav/Nav'
 
 import "./navbar2.css";
 const Navbar2 = ({...props}) => {
@@ -44,6 +45,8 @@ const Navbar2 = ({...props}) => {
 
   return (
     <>
+
+    {/* <Nav /> */}
       <div className="chat-navigation">
         <div className="chat-toggle">
           <ReorderIcon className="chat-sideBar" onClick={toggleClose} />

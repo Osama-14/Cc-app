@@ -1,20 +1,12 @@
-import React from 'react'
-import "./search-people.css"
-const SearchPeople = () => {
+import React from "react";
+import "./search-people.css";
 
+const SearchPeople = ({ getData }) => {
+  return (
+    <>
+      <input type="text" onChange={getData} />
+    </>
+  );
+};
 
-
-
-
-    return (
-        <div className="">
-
-        <input type="text" required  />
-
-      
-            
-        </div>
-    )
-}
-
-export default SearchPeople
+export default SearchPeople;
