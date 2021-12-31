@@ -73,7 +73,7 @@ const Home = ({ ...props }) => {
       setPosts((earlierPosts) => [...earlierPosts, obj]);
     });
   };
-
+  
   const getData = async (val) => {
     setPosts([]);
 
@@ -88,11 +88,10 @@ const Home = ({ ...props }) => {
       obj.key = doc.id;
       setPosts((earlierPosts) => [...earlierPosts, obj]);
         });
-
   };
 
-  
 
+  
   return (
     <div className="containerr">
       <Searchpeople getData={getData}

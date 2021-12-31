@@ -263,6 +263,7 @@ const Navbar2 = ({...props}) => {
             </span>
             <span className="chat-title">Post</span>
           </li>
+          
 
           <li className="chat-for-li">
             <a href="#" />
