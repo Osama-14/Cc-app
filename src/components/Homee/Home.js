@@ -5,9 +5,6 @@ import {
   collection,
   query,
   where,
-  startAt,
-  orderBy,
-  user,
 } from "../../Config";
 
 import { makeStyles } from "@material-ui/core/styles";
