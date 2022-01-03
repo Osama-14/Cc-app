@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 
 import { getStorage, ref } from "firebase/storage";
-import { collection, addDoc, getDocs, getFirestore, doc, query, where } from "firebase/firestore";
+import { collection, addDoc, getDocs, getFirestore, doc, query, where, startAt, orderBy } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCECVYxTfIj6lpO883lVXhot4iBTm0DlYw",
@@ -44,4 +44,6 @@ export {
   doc,
   query,
   where,
+  startAt,
+  orderBy
 };

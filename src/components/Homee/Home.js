@@ -1,5 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { db, getDocs, collection, query, where } from "../../Config";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  db,
+  getDocs,
+  collection,
+  query,
+  where,
+  startAt,
+  orderBy,
+  user,
+} from "../../Config";
 
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -53,7 +62,8 @@ const Home = ({ ...props }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [expanded, setExpanded] = React.useState(false);
-  const [data, setData] = useState(null);
+  const [users, setUsers] = useState([]);
+  const inputRef = useRef(null)
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -79,29 +89,35 @@ const Home = ({ ...props }) => {
   };
 
   const getData = async (val) => {
-    setPosts([]);
+    setUsers([])
 
+    let queryS = val.target.value;
+    // queryS = queryS.split('');
+    setUsers([])
     const q = await query(
-      collection(db, "posts"),
-      where("username", "==", val.target.value)
+      collection(db, "users"),
+      where("username", ">=",  queryS),
+      where("username", "<=", queryS + "\uf8ff")
     );
 
     const querySnapshot = await getDocs(q);
-    console.log("query", querySnapshot.empty);
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      let obj = doc.data();
+         let obj = doc.data();
       obj.key = doc.id;
-      console.log(doc.id, " => ", doc.data());
-      console.log(obj);
-      setPosts((earlierPosts) => [...earlierPosts, obj]);
-        });
 
+
+
+      setUsers((users) => [...users, obj]);
+    });
   };
+
+  // if (queryS.length === 0) {
+  //   setUsers([]);
+  // }
 
   return (
     <div className="containerr">
-      <Searchpeople getData={getData} />
+      <Searchpeople inputRef={inputRef} getData={getData} users={users} navigate={navigate} />
       {posts.map((val, ind) => {
         return (
           <div key={ind} onClick={() => navigate(`/profile/${val.uid}`)}>
