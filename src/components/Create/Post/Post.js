@@ -18,6 +18,10 @@ import { Modal, Button } from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import InputEmoji from "react-input-emoji";
+import livePng from "../../../images/live-video.png"
+import photoPng from "../../../images/photo.png"
+import watchPng from "../../../images/watch.png"
+
 
 import "./post.css";
 
@@ -158,11 +162,13 @@ const Create = () => {
                 <label for="choose-img">
                   <ImageIcon style={{ color: "#44d596", fontSize: "30px" }} />{" "}
                 </label>
+                <img src={livePng}/>
+                <img src={photoPng}/>
+                <img src={watchPng}/>
+
               </div>
 
-              {/* <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button> */}
+  
               <div>
                 <Button
                   className="post_btn_modal"
